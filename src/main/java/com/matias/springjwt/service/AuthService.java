@@ -1,22 +1,10 @@
 package com.matias.springjwt.service;
 
-import com.matias.springjwt.dto.request.LoginRequest;
-import com.matias.springjwt.dto.request.SignupRequest;
-import com.matias.springjwt.dto.request.TokenRefreshRequest;
-import com.matias.springjwt.dto.response.JwtResponse;
-import com.matias.springjwt.dto.response.MessageResponse;
-import com.matias.springjwt.dto.response.TokenRefreshResponse;
-import com.matias.springjwt.exception.TokenRefreshException;
-import com.matias.springjwt.security.dto.ERole;
-import com.matias.springjwt.model.RefreshTokenEntity;
-import com.matias.springjwt.model.RoleEntity;
-import com.matias.springjwt.model.UserEntity;
-import com.matias.springjwt.repository.IRoleRepository;
-import com.matias.springjwt.repository.IUserRepository;
-import com.matias.springjwt.security.jwt.JwtUtils;
-import com.matias.springjwt.security.services.RefreshTokenService;
-import com.matias.springjwt.security.dto.UserDetailsImpl;
-import com.matias.springjwt.service.abs.IAuthService;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,10 +14,23 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import com.matias.springjwt.dto.request.LoginRequest;
+import com.matias.springjwt.dto.request.SignupRequest;
+import com.matias.springjwt.dto.request.TokenRefreshRequest;
+import com.matias.springjwt.dto.response.JwtResponse;
+import com.matias.springjwt.dto.response.MessageResponse;
+import com.matias.springjwt.dto.response.TokenRefreshResponse;
+import com.matias.springjwt.exception.TokenRefreshException;
+import com.matias.springjwt.model.RefreshTokenEntity;
+import com.matias.springjwt.model.RoleEntity;
+import com.matias.springjwt.model.UserEntity;
+import com.matias.springjwt.repository.IRoleRepository;
+import com.matias.springjwt.repository.IUserRepository;
+import com.matias.springjwt.security.dto.ERole;
+import com.matias.springjwt.security.dto.UserDetailsImpl;
+import com.matias.springjwt.security.jwt.JwtUtils;
+import com.matias.springjwt.security.services.RefreshTokenService;
+import com.matias.springjwt.service.abs.IAuthService;
 
 @Service
 public class AuthService implements IAuthService {
