@@ -1,20 +1,19 @@
 package com.matias.springjwt.service.abs;
 
-import org.springframework.http.ResponseEntity;
-
 import com.matias.springjwt.dto.request.LoginRequest;
 import com.matias.springjwt.dto.request.SignupRequest;
 import com.matias.springjwt.dto.request.TokenRefreshRequest;
 import com.matias.springjwt.dto.response.JwtResponse;
 import com.matias.springjwt.dto.response.MessageResponse;
+import com.matias.springjwt.dto.response.TokenRefreshResponse;
 
 public interface IAuthService {
 
-    public JwtResponse authenticateUser(LoginRequest loginRequest);
+	public JwtResponse authenticateUser(LoginRequest loginRequest);
 
-    public Object registerUser(SignupRequest signUpRequest);
+	public MessageResponse registerUser(SignupRequest signUpRequest);
 
-    public ResponseEntity<?> refreshtoken(TokenRefreshRequest request);
+	public TokenRefreshResponse refreshToken(TokenRefreshRequest request);
 
-    public MessageResponse logoutUser();
+	public MessageResponse logoutUser();
 }

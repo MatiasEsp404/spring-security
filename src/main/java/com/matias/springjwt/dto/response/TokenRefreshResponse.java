@@ -1,16 +1,19 @@
 package com.matias.springjwt.dto.response;
 
-import lombok.*;
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class TokenRefreshResponse {
 
-    private String accessToken;
-    private String refreshToken;
-    private String tokenType = "Bearer";
+	private String token;
+
+	public TokenRefreshResponse(String token) {
+		this.token = token;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
 
 }

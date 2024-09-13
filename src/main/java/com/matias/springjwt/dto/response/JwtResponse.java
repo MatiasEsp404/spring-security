@@ -1,22 +1,40 @@
 package com.matias.springjwt.dto.response;
 
-import lombok.*;
-
 import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class JwtResponse {
 
-    private String token;
-    private String type = "Bearer";
-    private String refreshToken;
-    private Long id;
-    private String username;
-    private String email;
-    private List<String> roles;
+	private String token;
+	private String refreshToken;
+	private List<String> roles;
 
+	public JwtResponse(String token, String refreshToken, List<String> roles) {
+		this.token = token;
+		this.refreshToken = refreshToken;
+		this.roles = roles;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public String getRefreshToken() {
+		return refreshToken;
+	}
+
+	public void setRefreshToken(String refreshToken) {
+		this.refreshToken = refreshToken;
+	}
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
 }

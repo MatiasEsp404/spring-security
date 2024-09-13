@@ -15,6 +15,12 @@ public class TokenControllerAdvice {
     @ExceptionHandler(value = TokenRefreshException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ErrorMessage handleTokenRefreshException(TokenRefreshException ex, WebRequest request) {
-        return new ErrorMessage(HttpStatus.FORBIDDEN.value(), new Date(), ex.getMessage(), request.getDescription(false));
+    	ErrorMessage msg = new ErrorMessage();
+    	msg.setStatusCode(HttpStatus.FORBIDDEN.value());
+    	msg.setTimestamp(new Date());
+    	msg.setMessage(ex.getMessage());
+    	msg.setDescription(request.getDescription(false));
+    	return msg;
     }
+    
 }
