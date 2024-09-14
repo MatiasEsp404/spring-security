@@ -31,7 +31,7 @@ public class RefreshTokenService {
 		return refreshTokenRepository.findByToken(token);
 	}
 
-	public RefreshTokenEntity createRefreshToken(Long userId) {
+	public RefreshTokenEntity createRefreshToken(Integer userId) {
 		RefreshTokenEntity refreshToken = new RefreshTokenEntity();
 		refreshToken.setUser(userRepository.findById(userId).get());
 		refreshToken.setExpiryDate(Instant.now().plusMillis(refreshTokenDurationMs));
@@ -50,7 +50,7 @@ public class RefreshTokenService {
 	}
 
 	@Transactional
-	public int deleteByUserId(Long userId) {
+	public int deleteByUserId(Integer userId) {
 		Optional<UserEntity> optionalUserEntity = userRepository.findById(userId);
 		if (optionalUserEntity.isEmpty()) {
 			throw new EntityNotFoundException("Entity not found");

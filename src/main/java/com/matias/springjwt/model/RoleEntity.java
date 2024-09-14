@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import com.matias.springjwt.security.dto.ERole;
 
 @Entity
-@Table(name = "role")
+@Table(name = "auth_role")
 public class RoleEntity {
 
 	@Id

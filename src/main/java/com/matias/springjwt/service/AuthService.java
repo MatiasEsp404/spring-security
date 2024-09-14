@@ -94,7 +94,7 @@ public class AuthService implements IAuthService {
 			return new MessageResponse("No user is logged in or user is anonymous.");
 		}
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-		Long userId = userDetails.getId();
+		Integer userId = userDetails.getId();
 		refreshTokenService.deleteByUserId(userId);
 		return new MessageResponse("Log out successful!");
 	}

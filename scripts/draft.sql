@@ -1,30 +1,30 @@
 -- Consultas básicas
-select * from user;
-select * from user_roles;
-select * from role;
-select * from refresh_token;
+select * from auth_user;
+select * from auth_user_roles;
+select * from auth_role;
+select * from auth_refresh_token;
 
 -- Usuarios logueados
 select 
-	user.id, 
-    user.username, 
-    refresh_token.expiry_date, 
-    refresh_token.token 
-from user
-inner join refresh_token on refresh_token.user_id = user.id;
+	u.id, 
+    u.username, 
+    t.expiry_date, 
+    t.token 
+from auth_user u
+inner join auth_refresh_token t on t.user_id = u.id;
 
 -- Roles de usuarios
 select 
-	user.username,
-    role.name
-from user
-inner join user_roles on user_roles.user_id = user.id
-inner join role on user_roles.role_id = role.id;
+	u.username,
+    r.name
+from auth_user u
+inner join auth_user_roles ur on ur.user_id = u.id
+inner join auth_role r on ur.role_id = r.id;
 
 -- Reiniciar base de datos
 drop database matias_project;
 create database matias_project;
 use matias_project;
-insert into role values (1, 'ROLE_USER');
-insert into role values (2, 'ROLE_MODERATOR');
-insert into role values (3, 'ROLE_ADMIN');
+insert into auth_role values (1, 'ROLE_USER');
+insert into auth_role values (2, 'ROLE_MODERATOR');
+insert into auth_role values (3, 'ROLE_ADMIN');
