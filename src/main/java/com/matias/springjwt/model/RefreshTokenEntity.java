@@ -11,6 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "auth_refresh_token")
 public class RefreshTokenEntity {
@@ -28,37 +33,5 @@ public class RefreshTokenEntity {
 
 	@Column(nullable = false)
 	private Instant expiryDate;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public UserEntity getUser() {
-		return user;
-	}
-
-	public void setUser(UserEntity user) {
-		this.user = user;
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
-	public Instant getExpiryDate() {
-		return expiryDate;
-	}
-
-	public void setExpiryDate(Instant expiryDate) {
-		this.expiryDate = expiryDate;
-	}
 
 }

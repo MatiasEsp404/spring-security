@@ -57,10 +57,14 @@ public class AuthService implements IAuthService {
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		UserDetailsImpl user = (UserDetailsImpl) authentication.getPrincipal();
-		String jwt = jwtUtils.generateJwtToken(user);
+		String token = jwtUtils.generateJwtToken(user);
 		List<String> roles = user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
-		RefreshTokenEntity token = refreshTokenService.createRefreshToken(user.getId());
-		return new JwtResponse(jwt, token.getToken(), roles);
+		RefreshTokenEntity refreshToken = refreshTokenService.createRefreshToken(user.getId());
+		return JwtResponse.builder()
+				.token(token)
+				.refreshToken(refreshToken.getToken())
+				.roles(roles)
+				.build();
 	}
 
 	@Override
