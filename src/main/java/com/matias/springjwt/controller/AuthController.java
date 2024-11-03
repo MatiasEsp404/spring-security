@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.matias.springjwt.dto.request.LoginRequest;
-import com.matias.springjwt.dto.request.SignupRequest;
+import com.matias.springjwt.dto.request.RegisterRequest;
 import com.matias.springjwt.dto.request.TokenRefreshRequest;
-import com.matias.springjwt.dto.response.JwtResponse;
-import com.matias.springjwt.dto.response.MessageResponse;
+import com.matias.springjwt.dto.response.LoginResponse;
+import com.matias.springjwt.dto.response.RegisterResponse;
 import com.matias.springjwt.dto.response.TokenRefreshResponse;
 import com.matias.springjwt.service.abs.IAuthService;
 
@@ -24,14 +24,14 @@ public class AuthController {
 	@Autowired
 	private IAuthService authService;
 
-	@PostMapping("/sign-up")
-	public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-		return ResponseEntity.ok(authService.registerUser(signUpRequest));
+	@PostMapping("/register")
+	public ResponseEntity<RegisterResponse> register(@Valid @RequestBody RegisterRequest signUpRequest) {
+		return ResponseEntity.ok(authService.register(signUpRequest));
 	}
 
-	@PostMapping("/sign-in")
-	public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-		return ResponseEntity.ok(authService.authenticateUser(loginRequest));
+	@PostMapping("/login")
+	public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
+		return ResponseEntity.ok(authService.login(loginRequest));
 	}
 
 	@PostMapping("/refresh-token")
@@ -39,9 +39,10 @@ public class AuthController {
 		return ResponseEntity.ok(authService.refreshToken(request));
 	}
 
-	@PostMapping("/sign-out")
-	public ResponseEntity<MessageResponse> logoutUser() {
-		return ResponseEntity.ok(authService.logoutUser());
+	@PostMapping("/logout")
+	public ResponseEntity<Void> logout() {
+		authService.logout();
+		return ResponseEntity.noContent().build();
 	}
 
 }

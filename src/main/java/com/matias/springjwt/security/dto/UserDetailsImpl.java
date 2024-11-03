@@ -16,8 +16,6 @@ import lombok.Setter;
 @Builder
 public class UserDetailsImpl implements UserDetails {
 
-	private static final long serialVersionUID = -353286052446364970L;
-
 	private Integer id;
 	private String username;
 	private String email;

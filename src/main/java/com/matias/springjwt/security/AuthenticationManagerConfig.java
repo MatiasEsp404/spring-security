@@ -19,4 +19,5 @@ public class AuthenticationManagerConfig {
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
+    
 }

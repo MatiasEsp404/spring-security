@@ -3,6 +3,8 @@ package com.matias.springjwt.security;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
+import org.springframework.boot.actuate.health.HealthEndpoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -29,19 +31,21 @@ public class WebSecurityConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors(withDefaults())
-                .csrf(AbstractHttpConfigurer::disable)
-                .exceptionHandling(handling -> handling.authenticationEntryPoint(unauthorizedHandler))
-                .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/api/auth/**", "/api/test/**").permitAll()
-                        .anyRequest().authenticated());
-
+        http
+            .cors(withDefaults())
+            .csrf(AbstractHttpConfigurer::disable)
+            .exceptionHandling(handling -> 
+                handling.authenticationEntryPoint(unauthorizedHandler)
+            )
+            .sessionManagement(management -> 
+                management.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            )
+            .authorizeHttpRequests(requests -> requests
+                .requestMatchers(EndpointRequest.to(HealthEndpoint.class)).permitAll()
+                .requestMatchers("/api/**").permitAll()
+                .anyRequest().authenticated()
+            );
         http.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
-
         return http.build();
     }
 }
-
-
-

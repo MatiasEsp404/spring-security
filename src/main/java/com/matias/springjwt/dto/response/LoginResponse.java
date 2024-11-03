@@ -1,6 +1,6 @@
 package com.matias.springjwt.dto.response;
 
-import java.util.List;
+import java.util.Set;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -9,10 +9,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class JwtResponse {
+public class LoginResponse {
 
 	private String token;
 	private String refreshToken;
-	private List<String> roles;
+	private Set<String> roles;
 
 }

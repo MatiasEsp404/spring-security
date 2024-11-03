@@ -25,6 +25,10 @@ inner join auth_role r on ur.role_id = r.id;
 drop database matias_project;
 create database matias_project;
 use matias_project;
-insert into auth_role values (1, 'ROLE_USER');
-insert into auth_role values (2, 'ROLE_MODERATOR');
-insert into auth_role values (3, 'ROLE_ADMIN');
+insert into auth_role values (1, 'USER');
+insert into auth_role values (2, 'MODERATOR');
+insert into auth_role values (3, 'ADMIN');
+
+-- Crear administrador
+insert into auth_user_roles values (1, 2);
+insert into auth_user_roles values (1, 3);

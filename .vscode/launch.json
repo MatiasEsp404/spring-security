@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<springjwt>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.matias.springjwt.Application",
+            "projectName": "springjwt",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
