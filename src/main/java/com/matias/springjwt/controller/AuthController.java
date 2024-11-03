@@ -22,7 +22,7 @@ import com.matias.springjwt.service.abs.IAuthService;
 public class AuthController {
 
 	@Autowired
-	public IAuthService authService;
+	private IAuthService authService;
 
 	@PostMapping("/sign-up")
 	public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {

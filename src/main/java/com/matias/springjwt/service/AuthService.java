@@ -33,24 +33,24 @@ import com.matias.springjwt.service.abs.IAuthService;
 
 @Service
 public class AuthService implements IAuthService {
+	
+	@Autowired
+    private AuthenticationManager authenticationManager;
 
 	@Autowired
-	AuthenticationManager authenticationManager;
+	private IUserRepository userRepository;
 	
 	@Autowired
-	IUserRepository userRepository;
+	private IRoleRepository roleRepository;
 	
 	@Autowired
-	IRoleRepository roleRepository;
+	private PasswordEncoder encoder;
 	
 	@Autowired
-	PasswordEncoder encoder;
+	private JwtUtils jwtUtils;
 	
 	@Autowired
-	JwtUtils jwtUtils;
-	
-	@Autowired
-	RefreshTokenService refreshTokenService;
+	private RefreshTokenService refreshTokenService;
 
 	@Override
 	public JwtResponse authenticateUser(LoginRequest request) {
