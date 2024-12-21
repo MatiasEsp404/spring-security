@@ -19,10 +19,10 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class JwtUtils {
 
-	@Value("${springjwt.app.jwtSecret}")
+	@Value("${jwt.app.jwtSecret}")
 	private String jwtSecret;
 
-	@Value("${springjwt.app.jwtExpirationMs}")
+	@Value("${jwt.app.jwtExpirationMs}")
 	private int jwtExpirationMs;
 
 	public String generateJwtToken(UserDetailsImpl userPrincipal) {

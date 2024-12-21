@@ -18,7 +18,7 @@ import java.util.UUID;
 @Service
 public class RefreshTokenService {
 
-	@Value("${springjwt.app.jwtRefreshExpirationMs}")
+	@Value("${jwt.app.jwtRefreshExpirationMs}")
 	private Long refreshTokenDurationMs;
 
 	@Autowired
@@ -43,8 +43,7 @@ public class RefreshTokenService {
 	public RefreshTokenEntity verifyExpiration(RefreshTokenEntity token) {
 		if (token.getExpiryDate().compareTo(Instant.now()) < 0) {
 			refreshTokenRepository.delete(token);
-			throw new TokenRefreshException(token.getToken(),
-					"Refresh token was expired. Please make a new signin request");
+			throw new TokenRefreshException("Refresh token has expired. Please make a new sign in request");
 		}
 		return token;
 	}
