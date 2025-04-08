@@ -9,11 +9,11 @@ import com.matias.springjwt.dto.response.TokenRefreshResponse;
 
 public interface IAuthService {
 
-	public LoginResponse login(LoginRequest request);
+    public LoginResponse login(LoginRequest request);
 
-	public RegisterResponse register(RegisterRequest request);
+    public RegisterResponse register(RegisterRequest request);
 
-	public TokenRefreshResponse refreshToken(TokenRefreshRequest request);
+    public TokenRefreshResponse refreshToken(TokenRefreshRequest request);
 
-	public void logout();
+    public void logout();
 }
